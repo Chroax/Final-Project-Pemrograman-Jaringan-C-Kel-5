@@ -4,6 +4,37 @@ from flet import *
 import time
 from math import pi
 
+
+class SignInButton(UserControl):
+    def __init__(self, btn_name):
+        self.btn_name = btn_name
+        super().__init__()
+
+    def build(self):
+        return Container(
+            content=ElevatedButton(
+                content=Text(
+                    self.btn_name,
+                    size=16,
+                    weight="bold",
+                    font_family="Consolas"
+                ),
+                style=ButtonStyle(
+                    shape={
+                        "": RoundedRectangleBorder(radius=8)
+                    },
+                    color={
+                        "": "black"
+                    },
+                    bgcolor={
+                        "": "#7df6dd"
+                    }
+                ),
+                height=42,
+                width=320
+            )
+        )
+
 class AnimationBox(UserControl):
     def __init__(self, border_color, bg_color, rotate_angle):
         self.border_color = border_color
@@ -35,6 +66,16 @@ class InputField(UserControl):
         self.function_emails = function_emails
         super().__init__()
 
+    def return_email_prefix(self, e):
+        email = self.controls[0].content.controls[1].value
+        if e.control.data in email:
+            pass
+        else:
+            self.controls[0].content.controls[1].value += e.control.data
+            self.controls[0].content.controls[2].offset = transform.Offset(0.5, 0)
+            self.controls[0].content.controls[2].opacity = 0
+            self.update()
+
     def prefix_email_containers(self):
         email_labels = ["@kelompok5.com", "@kelompok6.com", "@kelompok7.com"]
         label_title = ["KEL5", "KEL6", "KEL7"]
@@ -49,11 +90,12 @@ class InputField(UserControl):
                     height=30,
                     alignment=alignment.center,
                     data=label,
-                    on_click= None,
+                    on_click= lambda e: self.return_email_prefix(e),
                     content=Text(
                         label_title[index],
                         size=9,
-                        weight="bold"
+                        weight="bold",
+                        font_family="Consolas"
                     )
                 )
             )
@@ -67,25 +109,17 @@ class InputField(UserControl):
             animate_offset=animation.Animation(400, 'decelerate'),
             controls=[__]
         )
-    def off_focus_input_check(self):
-        return Container(
-            opacity=1,
-            content=Checkbox(
-                fill_color="#7df6dd",
-                check_color="black",
-            )
-        )
 
     def get_prefix_email(self, e):
         if self.function_emails:
             email = self.controls[0].content.controls[1].value
             if e.data:
-                if "@kelompok5.com" in email or "@kelompok6.com" in email or "@kelompok7.com" in email:
+                if "@kelompok5.com" in email or "@kelompok6.com" in email or "@kelompok7.com" in email or "@" in email:
                     self.controls[0].content.controls[2].offset = transform.Offset(0, 0)
                     self.controls[0].content.controls[2].opacity = 0
                     self.update()
                 else:
-                    self.controls[0].content.controls[2].offset = transform.Offset(-0.15, 0)
+                    self.controls[0].content.controls[2].offset = transform.Offset(-0.9, 0)
                     self.controls[0].content.controls[2].opacity = 1
                     self.update()
             else:
@@ -118,16 +152,16 @@ class InputField(UserControl):
                         bgcolor="#3D4354",
                         height=22,
                         width=250,
-                        text_size=14,
+                        text_style=TextStyle(size=14, font_family="Consolas"),
                         content_padding=2,
                         cursor_color="black",
                         hint_text=self.text_hint,
-                        hint_style=TextStyle(size=14),
+                        hint_style=TextStyle(size=14, font_family="Consolas"),
                         password=self.hide,
                         on_change=lambda e: self.get_prefix_email(e),
                         on_blur=None
                     ),
-                    self.prefix_email_containers()
+                    self.prefix_email_containers(),
                 ]
             )
         )
@@ -137,6 +171,18 @@ def main(page : Page):
     page.horizontal_alignment = 'center'
     page.vertical_alignment = 'center'
     page.bgcolor = '#1B202D'
+    page.fonts = {
+        "Poppins": "fonts/Poppins/Poppins-Bold.ttf",
+        "Mulish": "fonts/Mulish/Mulish-VariableFont_wght.ttf"
+    }
+
+    def highlight_link(e):
+        e.control.style.color = colors.BLUE
+        e.control.update()
+
+    def unhighlight_link(e):
+        e.control.style.color = None
+        e.control.update()
 
     # Loop for animation box
     def animate_box():
@@ -223,19 +269,45 @@ def main(page : Page):
                         horizontal_alignment=CrossAxisAlignment.CENTER,
                         spacing=5,
                         controls=[
-                            # Title for sign in page
-                            Text("Welcome!", size=22, weight="bold"),
-                            Text("Sign in to continue", size=13, weight="bold")
+                            # Title for sign up page
+                            Text("Sign up", size=22, weight="bold", font_family="Consolas"),
+                            # Margin divider from title for input field
+                            Divider(height=20, color='transparent'),
+                            Text("Username", size=20, weight="bold", font_family="Consolas"),
+                            InputField("#3D4354", icons.PERSON_ROUNDED, "Email", False, True),
+                            Divider(height=5, color='transparent'),
+                            Text("Password", size=20, weight="bold", font_family="Consolas"),
+                            InputField("#3D4354", icons.LOCK_OPEN_ROUNDED, "Password", True, False),
+                            Divider(height=2, color='transparent'),
+                            Row(
+                                width=320,
+                                alignment=MainAxisAlignment.END,
+                                spacing=0,
+                                controls=[
+                                    Text("Already have account? ", size=15, font_family="Consolas"),
+                                    Text(
+                                        disabled=False,
+                                        spans=[
+                                            TextSpan(
+                                                "Sign In",
+                                                TextStyle(
+                                                    decoration=TextDecoration.UNDERLINE,
+                                                    size=15,
+                                                    font_family="Consolas"
+                                                ),
+                                                on_click=lambda e: print(f"Clicked span: {e.control.uid}"),
+                                                on_enter=highlight_link,
+                                                on_exit=unhighlight_link,
+                                                url="https://google.com"
+                                            ),
+                                        ],
+                                    )
+                                ]
+                            ),
+                            Divider(height=45, color='transparent'),
+                            SignInButton('Sign Up')
                         ]
                     ),
-
-                    # Margin divider from title for input field
-                    Divider(height=20, color='transparent'),
-                    Text("Username", size=20, weight="bold"),
-                    InputField("#3D4354", icons.PERSON_ROUNDED, "Email", False, True),
-                    Divider(height=5, color='transparent'),
-                    Text("Password", size=20, weight="bold"),
-                    InputField("#3D4354", icons.LOCK_OPEN_ROUNDED, "Password", True, False)
                 )
             )
         )
@@ -246,4 +318,4 @@ def main(page : Page):
 
 
 if __name__ == "__main__":
-    flet.app(target=main)
+    flet.app(target=main, assets_dir='assets', view=WEB_BROWSER)
