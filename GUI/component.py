@@ -208,3 +208,52 @@ class InputField(UserControl):
                 ]
             )
         )
+
+class UserData(UserControl):
+    def __init__(self, name, initial_name, route, page):
+        self.route = route
+        self.initial_name = initial_name
+        self.name = name
+        self.page = page
+        super().__init__()
+
+    def OpenMessage(self, e):
+        self.page.route = self.route
+        self.page.update()
+
+    def build(self):
+        return Container(
+            offset=[0.03, 0, 0, 0],
+            on_click=lambda e: self.OpenMessage(e),
+            content=Row(
+                controls=[
+                    Container(
+                        width=42,
+                        height=42,
+                        bgcolor="bluegrey900",
+                        alignment=alignment.center,
+                        border_radius=42,
+                        content=Text(
+                            value=self.initial_name,
+                            size=20,
+                            weight="bold",
+                            color="white"
+                        )
+                    ),
+                    Column(
+                        spacing=1,
+                        alignment="center",
+                        controls=[
+                            Text(
+                                value=self.name,
+                                size=21,
+                                weight="bold",
+                                color="white",
+                                opacity=1,
+                                animate_opacity=200
+                            )
+                        ]
+                    )
+                ]
+            )
+        )

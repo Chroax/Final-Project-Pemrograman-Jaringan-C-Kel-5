@@ -47,7 +47,7 @@ def SignInView(page):
                                 ]
                             ),
                             Divider(height=45, color='transparent'),
-                            Button('Sign In', "/sign-in", page)
+                            Button('Sign In', "/chat", page)
                         ]
                     ),
                 )
