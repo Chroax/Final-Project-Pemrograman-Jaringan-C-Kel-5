@@ -1,3 +1,5 @@
+import json
+
 import flet as ft
 
 class Message():
@@ -56,23 +58,28 @@ class ChatMessage(ft.Row):
 
 def ChatMessageView(page, cc):
     def send_message_click(e, type):
-        protocol = "sendprivate " + "frederick " + new_message.value
-        print(protocol)
-        cc.proses(protocol)
-        user_name = "Afdal"
-        if new_message.value != "":
-            page.pubsub.send_all(Message(user_name,new_message.value, message_type="chat_message"))
-            new_message.value = ""
-            new_message.focus()
+        if type == "send":
+            j = new_message.value.split(" ")
+            command = j[0].strip()
+            if command == "FILE":
+                protocol = "sendprivatefile " + "frederick " + j[1].strip()
+            else:
+                protocol = "sendprivate " + "frederick " + new_message.value
+            cc.proses(protocol)
+
+            user_name = "Afdal"
+            if new_message.value != "":
+                new_message.value = ""
+                new_message.focus()
+                page.update()
+        elif type == "refresh":
+            protocol = "inbox"
+            data = cc.proses(protocol)
+            message = Message("frederick", data, "chat_message")
+            m = ChatMessage(message)
+            chat.controls.append(m)
             page.update()
 
-    def on_message(message: Message):
-        if message.message_type == "chat_message":
-            m = ChatMessage(message)
-        chat.controls.append(m)
-        page.update()
-
-    page.pubsub.subscribe(on_message)
     new_message = ft.TextField(
         hint_text="Write a message...(To send file: 'FILE /path')",
         autofocus=True,
