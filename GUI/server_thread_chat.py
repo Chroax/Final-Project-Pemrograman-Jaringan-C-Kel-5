@@ -52,7 +52,7 @@ class Server(threading.Thread):
 	
 
 def main():
-    print("server 1 is running")
+    print("server is running")
     svr = Server()
     svr.start()
 

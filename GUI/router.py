@@ -60,12 +60,12 @@ class Router:
             if counter > 10:
                 counter = 0
 
-    def __init__(self, page):
+    def __init__(self, page, cc):
         self.page = page
         self.routes = {
-            "/sign-in": SignInView(page),
-            "/sign-up": SignUpView(page),
-            "/chat": ListChatView(page)
+            "/sign-in": SignInView(page, cc),
+            "/sign-up": SignUpView(page, cc),
+            "/chat": ListChatView(page, cc)
         }
         self.body = Container(content=self.routes['/sign-in'])
 

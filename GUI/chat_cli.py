@@ -3,7 +3,7 @@ import json
 import base64
 import os
 
-TARGET_IP = "192.168.242.1"
+TARGET_IP = "172.18.48.1"
 TARGET_PORT = 8889
 
 class ChatClient:
