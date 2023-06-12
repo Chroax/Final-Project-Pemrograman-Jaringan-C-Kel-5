@@ -29,7 +29,7 @@ def ListChatView(page,cc):
                                         opacity=1,
                                         animate_opacity=200
                                     ),
-                                    Button("Logout", "/sign-in","Logout", page,cc)
+                                    Button("Logout", "/sign-in", "Logout", page, cc)
                                 ]
                             )
                         ),

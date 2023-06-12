@@ -446,8 +446,8 @@ class Chat:
         msgs = {}
         for users in incoming:
             msgs[users] = []
-            while not incoming[users].empty():
-                msgs[users].append(s_fr['incoming'][users].get_nowait())
+            for idx in range(len(incoming[users].queue)):
+                msgs[users].append(incoming[users].queue[idx])
                 
         return {'status': 'OK', 'messages': msgs}
 
@@ -732,8 +732,8 @@ class Chat:
             return {'status': 'ERROR', 'message': 'User Tidak Terdaftar'}
             
         msgs = []
-        while not self.realms[realm_id].chats[s_fr['name']].empty():
-            msgs.append(self.realms[realm_id].chats[s_fr['name']].get_nowait())
+        for idx in range(len(self.realms[realm_id].chats[s_fr['name']].queue)):
+            msgs.append(self.realms[realm_id].chats[s_fr['name']].queue[idx])
             
         return {'status': 'OK', 'messages': msgs}
 
