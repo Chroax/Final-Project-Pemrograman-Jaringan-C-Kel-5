@@ -54,7 +54,7 @@ class ChatMessage(ft.Row):
         return colors_lookup[hash(user_name) % len(colors_lookup)]
 
 
-def ChatMessageView(page):
+def ChatMessageView(page, cc):
     def send_message_click(e):
         user_name = "Afdal"
         if new_message.value != "":
