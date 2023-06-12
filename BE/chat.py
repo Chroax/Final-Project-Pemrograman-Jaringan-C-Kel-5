@@ -138,7 +138,7 @@ class Chat:
                 realm_port_to = int(j[3].strip())
                 return self.recv_add_realm(realm_id, realm_address_to, realm_port_to)
             elif (command == 'connectedrealm'):
-                return { 'status': 'OK', 'message': self.realms}
+                return self.get_connected_realm()
             
             # PRIVATE
             elif (command == 'sendprivaterealm'):
@@ -472,6 +472,13 @@ class Chat:
     def recv_add_realm(self, realm_id, realm_address_to, realm_port_to):
         self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to)
         return {'status':'OK', 'message': 'Realm Berhasil Dibuat'}
+
+    def get_connected_realm(self):
+        realms = {}
+        for realm_id in self.realms:
+            realms[realm_id] = [self.realms[realm_id].realm_address_to, self.realms[realm_id].realm_port_to]
+            
+        return { 'status': 'OK', 'message': realms}
 
     # PRIVATE
     def send_private_message_realm(self, session_id, realm_id, sender, receiver, message, data):
