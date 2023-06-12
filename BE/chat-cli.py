@@ -30,7 +30,7 @@ class ChatClient:
                 username = j[1].strip()
                 password = j[2].strip()
                 name = j[3].strip()
-                country = j[4].strip()
+                country = "Indonesia" if len(j) != 5 else j[4].strip()
                 return self.register_user(username, password, name, country)
             elif (command == 'logout'):
                 return self.logout_user()
