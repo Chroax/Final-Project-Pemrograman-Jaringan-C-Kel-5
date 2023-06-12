@@ -55,7 +55,10 @@ class ChatMessage(ft.Row):
 
 
 def ChatMessageView(page, cc):
-    def send_message_click(e):
+    def send_message_click(e, type):
+        protocol = "sendprivate " + "frederick " + new_message.value
+        print(protocol)
+        cc.proses(protocol)
         user_name = "Afdal"
         if new_message.value != "":
             page.pubsub.send_all(Message(user_name,new_message.value, message_type="chat_message"))
@@ -70,9 +73,8 @@ def ChatMessageView(page, cc):
         page.update()
 
     page.pubsub.subscribe(on_message)
-
     new_message = ft.TextField(
-        hint_text="Write a message...",
+        hint_text="Write a message...(To send file: 'FILE /path')",
         autofocus=True,
         shift_enter=True,
         min_lines=1,
@@ -81,20 +83,20 @@ def ChatMessageView(page, cc):
         expand=True,
         color="white",
         bgcolor="#7A8194",
-        on_submit=send_message_click,
+        on_submit=lambda e: send_message_click(e, "send"),
     )
     submit_row = ft.Row(
             [
                 new_message,
                 ft.IconButton(
-                    icon=ft.icons.ATTACH_FILE_ROUNDED,
-                    tooltip="Send File",
-                    on_click=send_message_click,
+                    icon=ft.icons.REFRESH_ROUNDED,
+                    tooltip="Refresh",
+                    on_click=lambda e : send_message_click(e, "refresh"),
                 ),
                 ft.IconButton(
                     icon=ft.icons.SEND_ROUNDED,
                     tooltip="Send message",
-                    on_click=send_message_click,
+                    on_click=lambda e: send_message_click(e, "send"),
                 ),
             ]
         )

@@ -4,21 +4,12 @@ import base64
 import os
 import sys
 
-
-try:
-    TARGET_IP = str(sys.argv[1])
-    TARGET_PORT = int(sys.argv[2])
-except:
-    TARGET_IP = "127.0.0.1"
-    TARGET_PORT = 8889
-
 class ChatClient:
-    def __init__(self):
+    def __init__(self, ip, port):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server_address = (TARGET_IP,TARGET_PORT)
+        self.server_address = (ip, port)
         self.sock.connect(self.server_address)
         self.token_id = ""
-        print('ok')
     def proses(self,cmdline):
         j = cmdline.split(" ")
         try:
@@ -336,7 +327,7 @@ class ChatClient:
     
 
 if __name__=="__main__":
-    cc = ChatClient()
+    cc = ChatClient("127.0.0.1", 8889)
     while True:
         cmdline = input("Command {}:" . format(cc.token_id))
         print(cc.proses(cmdline))
