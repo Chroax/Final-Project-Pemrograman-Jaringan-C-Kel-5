@@ -46,9 +46,12 @@ class Chat:
     def __init__(self):
         self.sessions = {}
         self.users = {}
-        self.users['messi'] = { 'name': 'Lionel Messi', 'country': 'Argentina', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
-        self.users['henderson'] = { 'name': 'Jordan Henderson', 'country': 'Inggris', 'password': 'surabaya', 'incoming': {}, 'outgoing': {}}
-        self.users['lineker'] = { 'name': 'Gary Lineker', 'country': 'Inggris', 'password': 'surabaya','incoming': {}, 'outgoing':{}}
+        self.users['anton'] = { 'name': 'Antonio Taifan', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
+        self.users['cahyadi'] = { 'name': 'Cahyadi Surya', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
+        self.users['frederick'] = { 'name': 'Frederick WIjaya', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
+        self.users['afdal'] = { 'name': 'Muhammad Afdal', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
+        self.users['ariq'] = { 'name': 'Naufal Ariq', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
+        self.users['marcel'] = { 'name': 'Marcellino Mahesa', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
         self.realms = {}
     def proses(self, data):
         j = data.split(" ")

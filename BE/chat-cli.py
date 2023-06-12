@@ -2,9 +2,14 @@ import socket
 import json
 import base64
 import os
+import sys
 
-TARGET_IP = "192.168.242.1"
-TARGET_PORT = 8889
+try:
+    TARGET_IP = int(sys.argv[1])
+    TARGET_PORT = int(sys.argv[2])
+except:
+    TARGET_IP = "127.0.0.1"
+    TARGET_PORT = 8889
 
 class ChatClient:
     def __init__(self):
