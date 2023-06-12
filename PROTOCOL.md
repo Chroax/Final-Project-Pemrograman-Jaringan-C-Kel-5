@@ -1,12 +1,17 @@
 ```auth [username] [password]``` 
-- tujuan: autentikasi pengguna terdaftar  
+- auth: autentikasi pengguna terdaftar  
 - username: username yang digunakan pengguna - password: password yang digunakan pengguna
 
 ```register [username] [password] [name] [country]``` 
 - register: mendaftarkan data pengguna 
 - username: username yang digunakan pengguna 
-- password: password yang digunakan pengguna - name: nama pengguna - country: negara pengguna
-- logout - logout: untuk keluar dari akun atau aplikasi - parameter : tidak ada
+- password: password yang digunakan pengguna 
+- name: nama pengguna 
+- country: negara pengguna
+
+- ```logout``` 
+- logout: untuk keluar dari akun atau aplikasi 
+- parameter : tidak ada
 
 ```sendprivate [receiver] [message] ```
 - sendprivate: mengirimkan pesan secara privat 
@@ -15,7 +20,8 @@
 
 ```sendprivatefile [receiver] [filepath]``` 
 - sendprivatefile: mengirimkan file secara privat 
-- receiver: nama penerima - filepath: lokasi file yang ingin dikirim
+- receiver: nama penerima 
+- filepath: lokasi file yang ingin dikirim
 
 ```sendgroup [group_receiver] [message]```
 - sendgroup: mengirimkan pesan ke banyak orang 
@@ -58,7 +64,7 @@
 - sendgroupfilerealm: mengirimkan file ke beberapa user dalam satu realm 
 - realm_id: id dari realm 
 - group_receiver: penerima file yang dikirim 
-- - filepath: lokasi file yang ingin dikirimkan
+-  filepath: lokasi file yang ingin dikirimkan
 
 ```inboxrealm [realm_id]```
 - inboxrealm: pesan yang didapatkan 
