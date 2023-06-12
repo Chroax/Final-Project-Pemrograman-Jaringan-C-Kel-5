@@ -2,9 +2,15 @@ import socket
 import json
 import base64
 import os
+import sys
 
-TARGET_IP = "172.18.48.1"
-TARGET_PORT = 8889
+
+try:
+    TARGET_IP = int(sys.argv[1])
+    TARGET_PORT = int(sys.argv[2])
+except:
+    TARGET_IP = "127.0.0.1"
+    TARGET_PORT = 8889
 
 class ChatClient:
     def __init__(self):
@@ -25,7 +31,7 @@ class ChatClient:
                 username = j[1].strip()
                 password = j[2].strip()
                 name = j[3].strip()
-                country = j[4].strip()
+                country = "Indonesia" if len(j) != 5 else j[4].strip()
                 return self.register_user(username, password, name, country)
             elif (command == 'logout'):
                 return self.logout_user()
