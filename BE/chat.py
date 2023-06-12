@@ -478,7 +478,7 @@ class Chat:
         for realm_id in self.realms:
             realms[realm_id] = [self.realms[realm_id].realm_address_to, self.realms[realm_id].realm_port_to]
             
-        return { 'status': 'OK', 'message': realms}
+        return { 'status': 'OK', 'messages': realms}
 
     # PRIVATE
     def send_private_message_realm(self, session_id, realm_id, sender, receiver, message, data):

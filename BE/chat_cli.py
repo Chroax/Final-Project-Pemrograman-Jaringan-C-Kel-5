@@ -341,7 +341,7 @@ class ChatClient:
     
 
 if __name__=="__main__":
-    cc = ChatClient("192.168.1.8", 8889)
+    cc = ChatClient("127.0.0.1", 8889)
     while True:
         cmdline = input("Command {}:" . format(cc.token_id))
         print(cc.proses(cmdline))
