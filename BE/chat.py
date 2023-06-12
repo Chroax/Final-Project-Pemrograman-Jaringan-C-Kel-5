@@ -137,6 +137,8 @@ class Chat:
                 realm_address_to = j[2].strip()
                 realm_port_to = int(j[3].strip())
                 return self.recv_add_realm(realm_id, realm_address_to, realm_port_to)
+            elif (command == 'connectedrealm'):
+                return { 'status': 'OK', 'message': self.realms}
             
             # PRIVATE
             elif (command == 'sendprivaterealm'):
