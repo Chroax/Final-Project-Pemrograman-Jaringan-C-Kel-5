@@ -16,3 +16,25 @@ Aplikasi ChatKuy merupakan aplikasi chat yang dapat melakukan komunikasi chat ya
 
 ## Arsitektur
 ![arsitektur](https://github.com/Chroax/Final-Project-Pemrograman-Jaringan-C-Kel-5/assets/101288815/1296d100-13c1-45f7-882a-0cd306822cdc)
+
+IP Address pada Server 1 yang digunakan 0.0.0.0 .
+Port pada Server 1 yang akan digunakan 8889.
+IP Address pada Client 1 yang digunakan 192.168.xx.xx (Sesuai dengan IP Jaringan yang terhubung pada device). 
+Port pada Client 1 yang akan digunakan 8889.
+
+IP Address pada Server 2 yang digunakan 0.0.0.0. 
+Port pada Server 2 yang akan digunakan 1234 (Dapat disesuaikan dengan server kelompok lain).
+IP Address pada Client 2 yang digunakan 192.168.xx.xx (Sesuai dengan IP Jaringan yang terhubung pada device). 
+Port pada Client 2 yang akan digunakan 1234 (Dapat disesuaikan dengan client kelompok lain).
+<br>
+**Jaringan yang digunakan di 2 server atau lebih harus sama.**
+
+## Cara Menjalankan Server dan Client
+
+### Melihat IP address pada device
+![image](https://github.com/Chroax/Final-Project-Pemrograman-Jaringan-C-Kel-5/assets/101288815/71b0e752-6569-49f4-bf50-eb20f514c0d1)
+- Ketik ipconfig pada command prompt <br>
+
+![image](https://github.com/Chroax/Final-Project-Pemrograman-Jaringan-C-Kel-5/assets/101288815/59b2c7ca-ed89-4aa7-b0ee-22176ec14ad6)
+- Lalu lihat IP4v Address pada Wireless LAN adapter Wi-Fi, pada case ini ip yang nanti akan digunakan pada client adalah ***192.168.18.22***
+
