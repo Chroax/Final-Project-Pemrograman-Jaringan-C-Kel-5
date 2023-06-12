@@ -42,13 +42,34 @@ class HyperLink(UserControl):
         )
 
 class Button(UserControl):
-    def __init__(self, btn_name, route, page):
+    def __init__(self, btn_name, route, type, page, cc):
+        self.cc = cc
         self.btn_name = btn_name
         self.route = route
+        self.type = type
         self.page = page
         super().__init__()
 
     def submit(self, e):
+        if self.type == "SignIn":
+            email = (self.page.controls[0].content.content.controls[3].controls[4].controls[0].content.controls[1].value)  # Email
+            password = (self.page.controls[0].content.content.controls[3].controls[7].controls[0].content.controls[1].value) # Password
+            protocol = "auth " + email + " " + password
+            if email == "" or password == "":
+                return
+            self.cc.proses(protocol)
+        elif self.type == "SignUp":
+            fullname = (self.page.controls[0].content.content.controls[3].controls[3].controls[0].content.controls[1].value)  # Email
+            email = (self.page.controls[0].content.content.controls[3].controls[5].controls[0].content.controls[1].value)  # Email
+            password = (self.page.controls[0].content.content.controls[3].controls[8].controls[0].content.controls[1].value)  # Password
+            protocol = "register " + email + " " + password + " " + fullname + " Indonesia"
+            if fullname == "" or email == "" or password == "":
+                return
+            self.cc.proses(protocol)
+        elif self.type == "Logout":
+            protocol = "logout"
+            self.cc.proses(protocol)
+
         self.page.route = self.route
         self.page.update()
 

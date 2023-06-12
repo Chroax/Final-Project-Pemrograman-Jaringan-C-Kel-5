@@ -56,7 +56,7 @@ class Server(threading.Thread):
 def main():
     try:
         port = int(sys.argv[1])
-    except: port = 8000
+    except: port = 8889
     svr = Server(port)
     print("server is running on port {}".format(port))
     svr.start()

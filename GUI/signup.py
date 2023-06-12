@@ -1,7 +1,6 @@
 from component import *
 
-def SignUpView(page):
-    # Main Page Controls
+def SignUpView(page, cc):
     return Card(
             color="#1B202D",
             width=408,
@@ -30,7 +29,9 @@ def SignUpView(page):
                             Text("Sign Up!", size=22, weight="bold", font_family="Consolas"),
                             # Margin divider from title for input field
                             Divider(height=20, color='transparent'),
-                            Text("Username", size=20, weight="bold", font_family="Consolas"),
+                            Text("Fullname", size=20, weight="bold", font_family="Consolas"),
+                            InputField("#3D4354", icons.PERSON_ROUNDED, "Fullname", False, False),
+                            Text("Email", size=20, weight="bold", font_family="Consolas"),
                             InputField("#3D4354", icons.PERSON_ROUNDED, "Email", False, True),
                             Divider(height=5, color='transparent'),
                             Text("Password", size=20, weight="bold", font_family="Consolas"),
@@ -46,9 +47,10 @@ def SignUpView(page):
                                 ]
                             ),
                             Divider(height=45, color='transparent'),
-                            Button('Sign Up', "/sign-in", page)
+                            Button('Sign Up', "/sign-in", "SignUp", page, cc)
                         ]
                     ),
                 )
             )
         )
+    # Main Page Controls
