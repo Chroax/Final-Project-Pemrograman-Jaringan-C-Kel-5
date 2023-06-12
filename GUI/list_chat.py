@@ -1,18 +1,23 @@
 from component import *
+class Realm():
+    def __init__(self, username, realm_id, ip_address, port):
+        self.username = username
+        self.realm_id = realm_id
+        self.ip_address = ip_address
+        self.port = port
 
 def ListChatView(page,cc):
     def send_message_click(e, type):
-        protocol = "sendprivate " + "frederick " + add_realm.value
-        print(protocol)
-        user_name = "Afdal"
-        if add_realm.value != "":
-            add_realm.value = ""
-            add_realm.focus()
-            page.update()
+        j = add_realm.value.split(" ")
+        realm_id = j[0]
+        ip_address = j[1]
+        port = j[2]
+        protocol = "addrealm " + realm_id + " " + ip_address + " " + port
+        print(cc.proses(protocol))
 
 
     add_realm = TextField(
-        hint_text="Add realm",
+        hint_text="Add realm ('realmId ipaddress port')",
         autofocus=True,
         shift_enter=True,
         min_lines=1,
@@ -22,7 +27,6 @@ def ListChatView(page,cc):
         bgcolor="white",
         on_submit=lambda e: send_message_click(e, "add"),
         border_radius = 10,
-
     )
 
     return Container(

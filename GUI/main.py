@@ -17,7 +17,8 @@ def main(page : Page):
 
     try:
         ip, port = str(sys.argv[1]), int(sys.argv[2])
-    except: ip, port = '127.0.0.1', 8889
+    except:
+        ip, port = '127.0.0.1', 8889
 
     cc = chat_cli.ChatClient(ip, port)
 
@@ -25,7 +26,6 @@ def main(page : Page):
     page.on_route_change = myRouter.route_change
 
     page.add(myRouter.body)
-    # myRouter.animate_box()
     page.update()
 
 if __name__ == "__main__":

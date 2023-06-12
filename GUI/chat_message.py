@@ -57,23 +57,25 @@ class ChatMessage(ft.Row):
 
 
 def ChatMessageView(page, cc):
-    def send_message_click(e, type):
+    def send_message_click(type):
         if type == "send":
             j = new_message.value.split(" ")
             command = j[0].strip()
             if command == "FILE":
-                protocol = "sendprivatefile " + "frederick " + j[1].strip()
+                realm_id = "anton"
+                receiver = "anton"
+                filepath = j[1].strip()
+                protocol = "sendprivatefilerealm " + realm_id + " " + receiver + " " + filepath
+                print(cc.proses(protocol))
             else:
-                protocol = "sendprivate " + "frederick " + new_message.value
-            cc.proses(protocol)
+                realm_id = "anton"
+                receiver = "anton"
+                protocol = "sendprivaterealm " + realm_id + " " + receiver + new_message.value
+                print(cc.proses(protocol))
 
-            user_name = "Afdal"
-            if new_message.value != "":
-                new_message.value = ""
-                new_message.focus()
-                page.update()
         elif type == "refresh":
-            protocol = "inbox"
+            realm_id = "anton"
+            protocol = "inboxrealm " + realm_id
             data = cc.proses(protocol)
             message = Message("frederick", data, "chat_message")
             m = ChatMessage(message)
@@ -90,7 +92,7 @@ def ChatMessageView(page, cc):
         expand=True,
         color="white",
         bgcolor="#7A8194",
-        on_submit=lambda e: send_message_click(e, "send"),
+        on_submit=lambda e: send_message_click("send"),
     )
     submit_row = ft.Row(
             [
@@ -98,12 +100,12 @@ def ChatMessageView(page, cc):
                 ft.IconButton(
                     icon=ft.icons.REFRESH_ROUNDED,
                     tooltip="Refresh",
-                    on_click=lambda e : send_message_click(e, "refresh"),
+                    on_click=lambda e : send_message_click("refresh"),
                 ),
                 ft.IconButton(
                     icon=ft.icons.SEND_ROUNDED,
                     tooltip="Send message",
-                    on_click=lambda e: send_message_click(e, "send"),
+                    on_click=lambda e: send_message_click("send"),
                 ),
             ]
         )
