@@ -17,15 +17,15 @@ Aplikasi ChatKuy merupakan aplikasi chat yang dapat melakukan komunikasi chat ya
 ## Arsitektur
 ![arsitektur](https://github.com/Chroax/Final-Project-Pemrograman-Jaringan-C-Kel-5/assets/101288815/1296d100-13c1-45f7-882a-0cd306822cdc)
 
-IP Address pada Server 1 yang digunakan 0.0.0.0 .
-Port pada Server 1 yang akan digunakan 8889.
-IP Address pada Client 1 yang digunakan 192.168.xx.xx (Sesuai dengan IP Jaringan yang terhubung pada device). 
-Port pada Client 1 yang akan digunakan 8889.
+IP Address pada Server 1 yang digunakan 0.0.0.0 .<br>
+Port pada Server 1 yang akan digunakan 8889.<br>
+IP Address pada Client 1 yang digunakan 192.168.xx.xx (Sesuai dengan IP Jaringan yang terhubung pada device). <br>
+Port pada Client 1 yang akan digunakan 8889.<br>
 
-IP Address pada Server 2 yang digunakan 0.0.0.0. 
-Port pada Server 2 yang akan digunakan 1234 (Dapat disesuaikan dengan server kelompok lain).
-IP Address pada Client 2 yang digunakan 192.168.xx.xx (Sesuai dengan IP Jaringan yang terhubung pada device). 
-Port pada Client 2 yang akan digunakan 1234 (Dapat disesuaikan dengan client kelompok lain).
+IP Address pada Server 2 yang digunakan 0.0.0.0. <br>
+Port pada Server 2 yang akan digunakan 1234 (Dapat disesuaikan dengan server kelompok lain).<br>
+IP Address pada Client 2 yang digunakan 192.168.xx.xx (Sesuai dengan IP Jaringan yang terhubung pada device). <br>
+Port pada Client 2 yang akan digunakan 1234 (Dapat disesuaikan dengan client kelompok lain).<br>
 <br>
 **Jaringan yang digunakan di 2 server atau lebih harus sama.**
 
