@@ -5,7 +5,7 @@ import os
 import sys
 
 try:
-    TARGET_IP = int(sys.argv[1])
+    TARGET_IP = str(sys.argv[1])
     TARGET_PORT = int(sys.argv[2])
 except:
     TARGET_IP = "127.0.0.1"
@@ -17,6 +17,7 @@ class ChatClient:
         self.server_address = (TARGET_IP,TARGET_PORT)
         self.sock.connect(self.server_address)
         self.token_id = ""
+        print('ok')
     def proses(self,cmdline):
         j = cmdline.split(" ")
         try:
