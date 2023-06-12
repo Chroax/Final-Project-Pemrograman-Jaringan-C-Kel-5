@@ -1,6 +1,7 @@
 from signin import *
 from signup import *
 from list_chat import *
+from chat_message import *
 
 class Router:
     # Loop for animation box
@@ -65,7 +66,8 @@ class Router:
         self.routes = {
             "/sign-in": SignInView(page),
             "/sign-up": SignUpView(page),
-            "/chat": ListChatView(page)
+            "/chat": ListChatView(page),
+            "/msgchat": ChatMessageView(page),
         }
         self.body = Container(content=self.routes['/sign-in'])
 
