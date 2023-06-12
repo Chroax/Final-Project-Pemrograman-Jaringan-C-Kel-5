@@ -38,3 +38,7 @@ Port pada Client 2 yang akan digunakan 1234 (Dapat disesuaikan dengan client kel
 ![image](https://github.com/Chroax/Final-Project-Pemrograman-Jaringan-C-Kel-5/assets/101288815/59b2c7ca-ed89-4aa7-b0ee-22176ec14ad6)
 - Lalu lihat IP4v Address pada Wireless LAN adapter Wi-Fi, pada case ini ip yang nanti akan digunakan pada client adalah ***192.168.18.22***
 
+
+## Protokol
+Untuk protokol bisa dilihat pada link berikut :
+https://github.com/Chroax/Final-Project-Pemrograman-Jaringan-C-Kel-5/blob/main/PROTOCOL.md
