@@ -51,12 +51,14 @@
 
 ```sendgrouprealm [realm_id] [group_receiver] [message]``` 
 - sendgrouprealm: mengirimkan pesan ke beberapa user dalam satu realm 
-- realm_id: id dari realm - group_receiver: penerima pesan yang dikirim
+- realm_id: id dari realm 
+- group_receiver: penerima pesan yang dikirim
 
 ```sendgroupfilerealm [realm_id] [group_receiver] [filepath]```
 - sendgroupfilerealm: mengirimkan file ke beberapa user dalam satu realm 
 - realm_id: id dari realm 
-- group_receiver: penerima file yang dikirim - filepath: lokasi file yang ingin dikirimkan
+- group_receiver: penerima file yang dikirim 
+- - filepath: lokasi file yang ingin dikirimkan
 
 ```inboxrealm [realm_id]```
 - inboxrealm: pesan yang didapatkan 
