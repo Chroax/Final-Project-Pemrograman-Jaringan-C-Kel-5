@@ -217,12 +217,13 @@ class Chat:
                 realm_id = j[2].strip()
                 username = self.sessions[session_id]['username']
                 logging.warning("INBOX: {} in realm {}".format(session_id, realm_id))
-                return self.get_realm_inbox(session_id, username, realm_id, data)
+                return self.inbox_realm(session_id, username, realm_id, data)
             elif (command == 'chatrealm'):
-                realm_id = j[1].strip()
-                username = j[2].strip()
+                session_id = j[1].strip()
+                realm_id = j[2].strip()
+                username = self.sessions[session_id]['username']
                 logging.warning("INBOX: from realm {}".format(realm_id))
-                return self.get_realm_chat(username, realm_id)
+                return self.chat_realm(username, realm_id)
             
             
             ## INFO ##
@@ -703,7 +704,7 @@ class Chat:
         return {'status': 'OK', 'message': 'File Grup Berhasil Dikirim ke Realm'}
     
     # INBOX
-    def get_realm_inbox(self, session_id, username, realm_id, data):
+    def inbox_realm(self, session_id, username, realm_id, data):
         if (session_id not in self.sessions):
             return {'status': 'ERROR', 'message': 'Session Tidak Ditemukan'}
         if (realm_id not in self.realms):
@@ -719,7 +720,7 @@ class Chat:
         data += "\r\n"
         return self.realms[realm_id].sendstring(data)
     
-    def get_realm_chat(self, username, realm_id):
+    def chat_realm(self, username, realm_id):
         if (realm_id not in self.realms):
             return {'status': 'ERROR', 'message': 'Realm Tidak Terdaftar'}
         
