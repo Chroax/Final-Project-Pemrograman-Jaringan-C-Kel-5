@@ -12,9 +12,10 @@ def ListChatView(page,cc):
         realm_id = j[0]
         ip_address = j[1]
         port = j[2]
+        if realm_id == "" or ip_address == "" or port == "":
+            return
         protocol = "addrealm " + realm_id + " " + ip_address + " " + port
         print(cc.proses(protocol))
-
 
     add_realm = TextField(
         hint_text="Add realm ('realmId ipaddress port')",
