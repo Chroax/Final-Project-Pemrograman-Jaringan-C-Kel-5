@@ -40,9 +40,9 @@ def ChatView(page):
                             height=10000,
                             content=Column(controls=[
                                 Divider(height=10, color='transparent'),
-                                UserData("Lina Asu Li", "LI", "/anton-kontol", page),
+                                UserData("Lina Asu Li", "LI", "/anton-kontol", page, False),
                                 Divider(height=10, color="white24"),
-                                UserData("Lina Asu Li", "LI", "/anton-kontol", page),
+                                UserData("Lina Asu Li La Lo Ko Li", "LI", "/anton-kontol", page, True),
                                 Divider(height=10, color="white24")
                             ])
                         )

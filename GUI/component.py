@@ -210,7 +210,8 @@ class InputField(UserControl):
         )
 
 class UserData(UserControl):
-    def __init__(self, name, initial_name, route, page):
+    def __init__(self, name, initial_name, route, page, group_chat):
+        self.group_chat = group_chat
         self.route = route
         self.initial_name = initial_name
         self.name = name
@@ -222,6 +223,12 @@ class UserData(UserControl):
         self.page.update()
 
     def build(self):
+        type_text = ""
+        if self.group_chat:
+            type_text = "~ Group"
+        else:
+            type_text = "~ Private"
+
         return Container(
             offset=[0.03, 0, 0, 0],
             on_click=lambda e: self.OpenMessage(e),
@@ -246,6 +253,22 @@ class UserData(UserControl):
                         controls=[
                             Text(
                                 value=self.name,
+                                size=21,
+                                weight="bold",
+                                color="white",
+                                opacity=1,
+                                animate_opacity=200
+                            ),
+
+                        ]
+                    ),
+                    Column(
+                        spacing=1,
+                        offset=[0, 0, 0, 0],
+                        alignment="center",
+                        controls=[
+                            Text(
+                                value=type_text,
                                 size=21,
                                 weight="bold",
                                 color="white",
