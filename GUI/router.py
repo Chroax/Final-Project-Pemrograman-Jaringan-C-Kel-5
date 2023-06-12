@@ -61,7 +61,7 @@ class Router:
             if counter > 10:
                 counter = 0
 
-    def __init__(self, page):
+    def __init__(self, page, cc):
         self.page = page
         self.routes = {
             "/sign-in": SignInView(page),

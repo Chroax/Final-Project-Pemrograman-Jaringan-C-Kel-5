@@ -1,4 +1,5 @@
 from router import *
+from chat_cli import *
 
 def main(page : Page):
     # Dimension
@@ -11,7 +12,9 @@ def main(page : Page):
         "Mulish": "fonts/Mulish/Mulish-VariableFont_wght.ttf"
     }
 
-    myRouter = Router(page)
+    cc = ChatClient()
+
+    myRouter = Router(page, cc)
     page.on_route_change = myRouter.route_change
 
     page.add(myRouter.body)
