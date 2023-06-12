@@ -7,7 +7,7 @@ class ModernNavBar(UserControl):
     def __init__(self):
         super().__init__()
 
-    def UserData(self, initials: str, name : str,):
+    def UserData(self,  name : str,):
         #first row has user info, different from the icon rows, so we create a separate function for it
         return Container(
             content=Row(
@@ -15,11 +15,11 @@ class ModernNavBar(UserControl):
                     Container(
                         width=42,
                         height=42,
-                        bgcolor="bluegrey900",
+                        bgcolor=self.get_avatar_color(name),
                         alignment=alignment.center,
                         border_radius=42,
                         content=Text(
-                            value=initials,
+                            value=self.get_initials(name),
                             size=20,
                             weight="bold",
                             color="white",
@@ -68,27 +68,43 @@ class ModernNavBar(UserControl):
             ]
         )
     )
+    def get_initials(self, user_name: str):
+        return user_name[:1].capitalize()
+    
+    def get_avatar_color(self, user_name: str):
+        colors_lookup = [
+            "#FFC107",  # AMBER
+            "#2196F3",  # BLUE
+            "#795548",  # BROWN
+            "#00BCD4",  # CYAN
+            "#4CAF50",  # GREEN
+            "#3F51B5",  # INDIGO
+            "#CDDC39",  # LIME
+            "#FF9800",  # ORANGE
+            "#E91E63",  # PINK
+            "#9C27B0",  # PURPLE
+            "#F44336",  # RED
+            "#009688",  # TEAL
+            "#FFEB3B",  # YELLOW
+        ]
+        return colors_lookup[hash(user_name) % len(colors_lookup)]
 
     def build(self):
         return Container(width=500,
-                         height=580,padding=padding.only(top=10),
+                         height=580,padding=padding.only(top=10, left=10, right=10),
                          alignment=alignment.center,
                          content=Column(controls=[
                              #
                              self.TopMessages( "Messages"),
-                             self.UserData("LI","line indent",),
+                             self.UserData("Antonio",),
                              Divider(height=10, color="white24"),
-                             self.UserData("LI", "line indent",),
+                             self.UserData("Afdal",),
                              Divider(height=10, color="white24"),
-                             self.UserData("LI", "line indent",),
+                             self.UserData("Cahyadi",),
                              Divider(height=10, color="white24"),
-                             self.UserData("LI", "line indent",),
+                             self.UserData("Frederick",),
                              Divider(height=10, color="white24"),
-                             self.UserData("LI", "line indent", ),
-                             Divider(height=10, color="white24"),
-                             self.UserData("LI", "line indent", ),
-                             Divider(height=10, color="white24"),
-                             self.UserData("LI", "line indent", ),
+                             self.UserData("Ariq", ),
                          ]
 
                          ),
