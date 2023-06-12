@@ -477,7 +477,7 @@ class Chat:
         s_fr = self.get_user(sender)
         s_to = self.get_user(receiver)
         if (s_fr == False or s_to == False):
-            return {'status': 'ERROR', 'message': 'User Tidak Terdaftar kirim'}
+            return {'status': 'ERROR', 'message': 'User Tidak Terdaftar'}
         
         message = { 'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
         self.realms[realm_id].put(message)
