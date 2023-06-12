@@ -4,7 +4,7 @@ from os.path import join, dirname, realpath
 import json
 import uuid
 import logging
-from queue import  Queue
+from queue import Queue
 import threading 
 import socket
 
@@ -48,7 +48,7 @@ class Chat:
         self.users = {}
         self.users['anton'] = { 'name': 'Antonio Taifan', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
         self.users['cahyadi'] = { 'name': 'Cahyadi Surya', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
-        self.users['frederick'] = { 'name': 'Frederick WIjaya', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
+        self.users['frederick'] = { 'name': 'Frederick Wijayadi', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
         self.users['afdal'] = { 'name': 'Muhammad Afdal', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
         self.users['ariq'] = { 'name': 'Naufal Ariq', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}
         self.users['marcel'] = { 'name': 'Marcellino Mahesa', 'country': 'Indonesia', 'password': 'surabaya', 'incoming' : {}, 'outgoing': {}}

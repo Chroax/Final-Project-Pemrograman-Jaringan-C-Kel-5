@@ -2,7 +2,6 @@ import socket
 import json
 import base64
 import os
-import sys
 
 class ChatClient:
     def __init__(self, ip, port):
@@ -10,7 +9,8 @@ class ChatClient:
         self.server_address = (ip, port)
         self.sock.connect(self.server_address)
         self.token_id = ""
-    def proses(self,cmdline):
+        self.username = ""
+    def proses(self, cmdline):
         j = cmdline.split(" ")
         try:
             command = j[0].strip()
@@ -141,6 +141,7 @@ class ChatClient:
         result = self.sendstring(string)
         if result['status'] == 'OK':
             self.token_id = result['token_id']
+            self.username = username
             return "username {} berhasil masuk, token {}" . format(username, self.token_id)
         else:
             return "Error, {}" . format(result['message'])
