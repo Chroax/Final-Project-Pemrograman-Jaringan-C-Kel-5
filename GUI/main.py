@@ -1,6 +1,8 @@
 from router import *
-from chat_cli import *
 import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'BE'))
+import chat_cli
 
 def main(page : Page):
     # Dimension
@@ -17,7 +19,7 @@ def main(page : Page):
         ip, port = str(sys.argv[1]), int(sys.argv[2])
     except: ip, port = '127.0.0.1', 8889
 
-    cc = ChatClient(ip, port)
+    cc = chat_cli.ChatClient(ip, port)
 
     myRouter = Router(page, cc)
     page.on_route_change = myRouter.route_change
