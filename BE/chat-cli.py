@@ -59,6 +59,49 @@ class ChatClient:
             elif (command == 'inbox'):
                 return self.inbox()            
             
+            
+            ## EXTERNAL SERVER ##
+            # INITIALIZE
+            elif (command == 'addrealm'):
+                realm_id = j[1].strip()
+                realm_address_to = j[2].strip()
+                realm_port_to = j[3].strip()
+                return self.add_realm(realm_id, realm_address_to, realm_port_to)
+           
+            # PRIVATE
+            elif (command == 'sendprivaterealm'):
+                realm_id = j[1].strip()
+                receiver = j[2].strip()
+                message = ""
+                for w in  j[3:]:
+                    message = "{} {}".format(message, w)
+                return self.send_private_message_realm(realm_id, receiver, message)
+            elif (command == 'sendprivatefilerealm'):
+                realm_id = j[1].strip()
+                receiver = j[2].strip()
+                filepath = j[3].strip()
+                return self.send_private_file_realm(realm_id, receiver, filepath)
+            
+            # GROUP
+            elif (command == 'sendgrouprealm'):
+                realm_id = j[1].strip()
+                group_receiver = j[2].strip()
+                message=""
+                for w in  j[3:]:
+                    message="{} {}" . format(message, w)
+                return self.send_group_message_realm(realm_id, group_receiver,message)
+            elif (command == 'sendgroupfilerealm'):
+                realm_id = j[1].strip()
+                group_receiver = j[2].strip()
+                filepath = j[3].strip()
+                return self.send_group_file_realm(realm_id, group_receiver, filepath)
+
+            # INBOX
+            elif (command == 'inboxrealm'):
+                realm_id = j[1].strip()
+                return self.inbox_realm(realm_id)
+            
+            
             ### INFO ## 
             elif (command == 'logininfo'):
                 return self.login_info()
@@ -197,6 +240,92 @@ class ChatClient:
             return "{}" . format(json.dumps(result['messages']))
         else:
             return "Error, {}" . format(result['message'])
+    
+    
+    ## EXTERNAL SERVER ##
+    # INITIALIZE
+    def add_realm(self, realm_id, realm_address_to, realm_port_to):
+        if (self.token_id == ""):
+            return "Error, not authorized"
+        
+        string = "addrealm {} {} {} \r\n" . format(realm_id, realm_address_to, realm_port_to)
+        result = self.sendstring(string)
+        if result['status'] == 'OK':
+            return "realm {} berhasil dibuat" . format(realm_id)
+        else:
+            return "Error, {}" . format(result['message'])
+        
+    # PRIVATE
+    def send_private_message_realm(self, realm_id, receiver, message):
+        if (self.token_id == ""):
+            return "Error, not authorized"
+        
+        string = "sendprivaterealm {} {} {} {} \r\n" . format(self.token_id, realm_id, receiver, message)
+        result = self.sendstring(string)
+        if result['status'] == 'OK':
+            return "pesan berhasil dikirim ke {} di realm {}" . format(receiver, realm_id)
+        else:
+            return "Error, {}" . format(result['message'])
+        
+    def send_private_file_realm(self, realm_id, receiver, filepath):
+        if (self.token_id == ""):
+            return "Error, not authorized"
+        
+        if not os.path.exists(filepath):
+            return {'status': 'ERROR', 'message': 'File Tidak Ditemukan'}
+        
+        with open(filepath, 'rb') as f:
+            file_content = f.read()
+            encoded_file = base64.b64encode(file_content)
+        
+        string = "sendprivatefilerealm {} {} {} {} {} \r\n" . format(self.token_id, realm_id, receiver, filepath, encoded_file)
+        result = self.sendstring(string)
+        if result['status'] == 'OK':
+            return "file berhasil dikirim ke {} di realm {}". format(receiver, realm_id)
+        else:
+            return "Error, {}" . format(result['message'])
+        
+    # GROUP
+    def send_group_message_realm(self, realm_id, group_receiver, message):
+        if self.token_id == "":
+            return "Error, not authorized"
+        
+        string = "sendgrouprealm {} {} {} {} \r\n" . format(self.token_id, realm_id, group_receiver, message)
+        result = self.sendstring(string)
+        if result['status'] == 'OK':
+            return "pesan berhasil dikirim ke grup {} di realm {}" . format(group_receiver, realm_id)
+        else:
+            return "Error {}" . format(result['message'])
+        
+    def send_group_file_realm(self, realm_id, group_receiver, filepath):
+        if self.token_id == "":
+            return "Error, not authorized"
+
+        if not os.path.exists(filepath):
+            return {'status': 'ERROR', 'message': 'File Tidak Ditemukan'}
+        
+        with open(filepath, 'rb') as f:
+            file_content = f.read()
+            encoded_file = base64.b64encode(file_content)
+            
+        string = "sendgroupfilerealm {} {} {} {} {}\r\n" . format(self.token_id, realm_id, group_receiver, filepath, encoded_file)
+        result = self.sendstring(string)
+        if result['status'] == 'OK':
+            return "file berhasil dikirim ke grup {} di realm {}" . format(group_receiver, realm_id)
+        else:
+            return "Error {}" . format(result['message'])
+
+    # INBOX
+    def inbox_realm(self, realm_id):
+        if (self.token_id == ""):
+            return "Error, not authorized"
+        
+        string = "inboxrealm {} {} \r\n" . format(self.token_id, realm_id)
+        result = self.sendstring(string)
+        if result['status'] == 'OK':
+            return "{} di realm {}" . format(result['messages'], realm_id)
+        else:
+            return "Error, {}".format(result['message'])
     
 
 if __name__=="__main__":
