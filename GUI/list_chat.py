@@ -1,7 +1,7 @@
 from component import *
 
 
-def ListChatView(page):
+def ListChatView(page, cc):
     return Container(
         height=2000,
         bgcolor="#1B202D",  # Set the first background color
@@ -29,7 +29,7 @@ def ListChatView(page):
                                         opacity=1,
                                         animate_opacity=200
                                     ),
-                                    Button("Logout", "/sign-in", page)
+                                    Button("Logout", "/sign-in", "Logout", page, cc)
                                 ]
                             )
                         ),

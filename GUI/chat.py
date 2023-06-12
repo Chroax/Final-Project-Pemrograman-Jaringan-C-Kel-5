@@ -340,7 +340,7 @@ class Chat:
             inqueue_receiver[sender].put(json.dumps(message))
         
         child = f"{filename}_{sender}_{receiver}"
-        folder = join(dirname(realpath(__file__)), 'files/')
+        folder = join(dirname(realpath(__file__)), '../BE/files/')
         os.makedirs(folder, exist_ok=True)
         folder = join(folder, child)
         os.makedirs(folder, exist_ok=True)
@@ -418,7 +418,7 @@ class Chat:
                 inqueue_receiver[sender].put(json.dumps(message))
         
             child = f"{filename}_{sender}_{receiver}"
-            folder = join(dirname(realpath(__file__)), 'files/')
+            folder = join(dirname(realpath(__file__)), '../BE/files/')
             os.makedirs(folder, exist_ok=True)
             folder = join(folder, child)
             os.makedirs(folder, exist_ok=True)
@@ -528,7 +528,7 @@ class Chat:
         self.realms[realm_id].put(message)
         
         child = f"{filename}_{sender}_{receiver}_{realm_id}"
-        folder = join(dirname(realpath(__file__)), 'files/')
+        folder = join(dirname(realpath(__file__)), '../BE/files/')
         os.makedirs(folder, exist_ok=True)
         folder = join(folder, child)
         os.makedirs(folder, exist_ok=True)
@@ -566,7 +566,7 @@ class Chat:
         self.realms[realm_id].put(message)
         
         child = f"{filename}_{sender}_{receiver}_{realm_id}"
-        folder = join(dirname(realpath(__file__)), 'files/')
+        folder = join(dirname(realpath(__file__)), '../BE/files/')
         os.makedirs(folder, exist_ok=True)
         folder = join(folder, child)
         os.makedirs(folder, exist_ok=True)
@@ -649,7 +649,7 @@ class Chat:
             self.realms[realm_id].put(message)
         
             child = f"{filename}_{sender}_{receiver}_{realm_id}"
-            folder = join(dirname(realpath(__file__)), 'files/')
+            folder = join(dirname(realpath(__file__)), '../BE/files/')
             os.makedirs(folder, exist_ok=True)
             folder = join(folder, child)
             os.makedirs(folder, exist_ok=True)
@@ -691,7 +691,7 @@ class Chat:
             self.realms[realm_id].put(message)
         
             child = f"{filename}_{sender}_{receiver}_{realm_id}"
-            folder = join(dirname(realpath(__file__)), 'files/')
+            folder = join(dirname(realpath(__file__)), '../BE/files/')
             os.makedirs(folder, exist_ok=True)
             folder = join(folder, child)
             os.makedirs(folder, exist_ok=True)
