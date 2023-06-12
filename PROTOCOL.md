@@ -1,59 +1,67 @@
-```
-auth [username] [password]
-```
+```auth [username] [password]``` 
+- tujuan: autentikasi pengguna terdaftar  
+- username: username yang digunakan pengguna - password: password yang digunakan pengguna
 
-```
-register [username] [password] [name] [country]
-```
+```register [username] [password] [name] [country]``` 
+- register: mendaftarkan data pengguna 
+- username: username yang digunakan pengguna 
+- password: password yang digunakan pengguna - name: nama pengguna - country: negara pengguna
+- logout - logout: untuk keluar dari akun atau aplikasi - parameter : tidak ada
 
-```
-logout
-```
+```sendprivate [receiver] [message] ```
+- sendprivate: mengirimkan pesan secara privat 
+- receiver: nama penerima 
+- message: pesan yang dikirimkan
 
-```
-sendprivate [receiver] [message]
-```
+```sendprivatefile [receiver] [filepath]``` 
+- sendprivatefile: mengirimkan file secara privat 
+- receiver: nama penerima - filepath: lokasi file yang ingin dikirim
 
-```
-sendprivatefile [receiver] [filepath]
-```
+```sendgroup [group_receiver] [message]```
+- sendgroup: mengirimkan pesan ke banyak orang 
+- group_receiver: group penerima pesan 
+- message: pesan yang dikirimkan
 
-```
-sendgroup [group_receiver] [message]
-```
+```sendgroupfile [group_receiver] [message]``` 
+- sendroupfile: mengirimkan file ke banyak orang 
+- group_receiver: group penerima pesan 
+- message: pesan yang akan dikirimkan
 
-```
-sendgroupfile [group_receiver] [message]
-```
+ ```inbox``` 
+- inbox: pesan yang didapatkan 
+- parameter: tidak ada
 
-```
-inbox
-```
+```addrealm [realm_id] [realm_address_to] [realm_port_to]```
+- addrealm: untuk menambahkan realm baru 
+- realm_id: id dari realm 
+- realm_address_to: ip address dari realm yang ingin disambungkan 
+- realm_port_to: port dari realm yang ingin disambungkan
 
-```
-addrealm [realm_id] [realm_address_to] [realm_port_to]
-```
+```sendprivaterealm [realm_id] [receiver] [message]```
+- sendprivaterealm: mengirimkan pesan ke realm lain yang telah tersambung atau ditambahkan 
+- realm_id: id dari realm 
+- receiver: penerima pesan yang dikirim 
+- message: pesan yang akan dikirimkan
 
-```
-sendprivaterealm [realm_id] [receiver] [message]
-```
+```sendprivatefilerealm [realm_id] [receiver] [filepath]```
+- sendprivatefilerealm: mengirimkan file ke realm yang telah tersambung atau ditambahkan 
+- realm_id: id dari realm 
+- receiver: penerima file yang dikirim 
+- filepath: lokasi file yang mau dikirimkan
 
-```
-sendprivatefilerealm [realm_id] [receiver] [filepath]
-```
+```sendgrouprealm [realm_id] [group_receiver] [message]``` 
+- sendgrouprealm: mengirimkan pesan ke beberapa user dalam satu realm 
+- realm_id: id dari realm - group_receiver: penerima pesan yang dikirim
 
-```
-sendgrouprealm [realm_id] [group_receiver] [message]
-```
+```sendgroupfilerealm [realm_id] [group_receiver] [filepath]```
+- sendgroupfilerealm: mengirimkan file ke beberapa user dalam satu realm 
+- realm_id: id dari realm 
+- group_receiver: penerima file yang dikirim - filepath: lokasi file yang ingin dikirimkan
 
-```
-sendgroupfilerealm [realm_id] [group_receiver] [filepath]
-```
+```inboxrealm [realm_id]```
+- inboxrealm: pesan yang didapatkan 
+- realm_id: id dari realm
 
-```
-inboxrealm [realm_id]
-```
-
-```
-login_info
-```
+```login_info``` 
+- login_info: melihat info dari user yang aktif 
+- parameter : tidak ada
