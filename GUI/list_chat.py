@@ -1,7 +1,7 @@
 from component import *
 
 
-def ChatView(page):
+def ListChatView(page):
     return Container(
         height=2000,
         bgcolor="#1B202D",  # Set the first background color
