@@ -56,6 +56,9 @@ class ChatMessage(ft.Row):
 
 def ChatMessageView(page, cc):
     def send_message_click(e):
+        protocol = "sendprivate " + "frederick " + new_message.value
+        print(protocol)
+        cc.proses(protocol)
         user_name = "Afdal"
         if new_message.value != "":
             page.pubsub.send_all(Message(user_name,new_message.value, message_type="chat_message"))
@@ -70,7 +73,6 @@ def ChatMessageView(page, cc):
         page.update()
 
     page.pubsub.subscribe(on_message)
-
     new_message = ft.TextField(
         hint_text="Write a message...",
         autofocus=True,
