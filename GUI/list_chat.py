@@ -1,7 +1,7 @@
 from component import *
 
 
-def ListChatView(page, cc):
+def ListChatView(page,cc):
     return Container(
         height=2000,
         bgcolor="#1B202D",  # Set the first background color
@@ -40,9 +40,9 @@ def ListChatView(page, cc):
                             height=10000,
                             content=Column(controls=[
                                 Divider(height=10, color='transparent'),
-                                UserData("Lina Asu Li", "LI", "/msgchat", page, False),
+                                UserData("Lina Asu Li", "LI", "/msgchat", page, True),
                                 Divider(height=10, color="white24"),
-                                UserData("Lina Asu Li La Lo Ko Li", "LI", "/msgchat", page, True),
+                                UserData("Lina Asu Li La Lo Ko Li", "LI", "/anton-kontol", page, True),
                                 Divider(height=10, color="white24")
                             ])
                         )
