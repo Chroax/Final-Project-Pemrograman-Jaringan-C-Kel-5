@@ -1,6 +1,7 @@
 ```auth [username] [password]``` 
 - auth: autentikasi pengguna terdaftar  
-- username: username yang digunakan pengguna - password: password yang digunakan pengguna
+- username: username yang digunakan pengguna 
+-  password: password yang digunakan pengguna
 
 ```register [username] [password] [name] [country]``` 
 - register: mendaftarkan data pengguna 
