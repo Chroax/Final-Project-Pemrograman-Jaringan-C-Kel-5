@@ -19,4 +19,4 @@ def main(page : Page):
     page.update()
 
 if __name__ == "__main__":
-    flet.app(target=main, assets_dir='assets', view=WEB_BROWSER)
+    flet.app(port=8550, target=main, assets_dir='assets', view=WEB_BROWSER)
