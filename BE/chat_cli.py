@@ -263,7 +263,7 @@ class ChatClient:
         string = "connectedrealm \r\n"
         result = self.sendstring(string)
         if result['status'] == 'OK':
-            return "{}" . format(json.dumps(result['messages']))
+            return "{}" . format(result['messages'])
         else:
             return "Error, {}" . format(result['message'])
         
