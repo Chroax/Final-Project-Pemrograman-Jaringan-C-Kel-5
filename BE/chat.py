@@ -9,11 +9,14 @@ import threading
 import socket
 
 class RealmBridge(threading.Thread):
-    def __init__(self, chat, realm_address_to, realm_port_to):
+    def __init__(self, chat, realm_address_to, realm_port_to, users):
         self.chat = chat
         self.chats = {}
         self.realm_address_to = realm_address_to
         self.realm_port_to = realm_port_to
+        self.users = []
+        for username in users:
+            self.users.append(username)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((self.realm_address_to, self.realm_port_to))
         threading.Thread.__init__(self)
@@ -448,8 +451,8 @@ class Chat:
         msgs = {}
         for users in incoming:
             msgs[users] = []
-            for idx in range(len(incoming[users].queue)):
-                msgs[users].append(incoming[users].queue[idx])
+            while not incoming[users].empty():
+                msgs[users].append(s_fr['incoming'][users].get_nowait())
                 
         return {'status': 'OK', 'messages': msgs}
 
@@ -460,7 +463,7 @@ class Chat:
         if realm_id in self.realms:
             return {'status': 'ERROR', 'message': 'Realm Telah Terdaftar'}
 
-        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to)
+        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to, self.users)
         
         j = data.split()
         j[0] = "recvaddrealm"
@@ -470,13 +473,13 @@ class Chat:
         return self.realms[realm_id].sendstring(data)
 
     def recv_add_realm(self, realm_id, realm_address_to, realm_port_to):
-        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to)
+        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to, self.users)
         return {'status':'OK', 'message': 'Realm Berhasil Dibuat'}
 
     def get_connected_realm(self):
         realms = {}
         for realm_id in self.realms:
-            realms[realm_id] = [self.realms[realm_id].realm_address_to, self.realms[realm_id].realm_port_to]
+            realms[realm_id] = [self.realms[realm_id].realm_address_to, self.realms[realm_id].realm_port_to, self.realms[realm_id].users]
             
         return { 'status': 'OK', 'messages': realms}
 
@@ -741,8 +744,8 @@ class Chat:
             return {'status': 'ERROR', 'message': 'User Tidak Terdaftar'}
             
         msgs = []
-        for idx in range(len(self.realms[realm_id].chats[s_fr['name']].queue)):
-            msgs.append(self.realms[realm_id].chats[s_fr['name']].queue[idx])
+        while not self.realms[realm_id].chats[s_fr['name']].empty():
+            msgs.append(self.realms[realm_id].chats[s_fr['name']].get_nowait())
             
         return {'status': 'OK', 'messages': msgs}
 
