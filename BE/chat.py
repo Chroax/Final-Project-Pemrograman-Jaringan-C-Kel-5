@@ -9,11 +9,12 @@ import threading
 import socket
 
 class RealmBridge(threading.Thread):
-    def __init__(self, chat, realm_address_to, realm_port_to):
+    def __init__(self, chat, realm_address_to, realm_port_to, users):
         self.chat = chat
         self.chats = {}
         self.realm_address_to = realm_address_to
         self.realm_port_to = realm_port_to
+        self.users = users
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((self.realm_address_to, self.realm_port_to))
         threading.Thread.__init__(self)
@@ -460,7 +461,7 @@ class Chat:
         if realm_id in self.realms:
             return {'status': 'ERROR', 'message': 'Realm Telah Terdaftar'}
 
-        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to)
+        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to, self.users)
         
         j = data.split()
         j[0] = "recvaddrealm"
@@ -470,7 +471,7 @@ class Chat:
         return self.realms[realm_id].sendstring(data)
 
     def recv_add_realm(self, realm_id, realm_address_to, realm_port_to):
-        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to)
+        self.realms[realm_id] = RealmBridge(self, realm_address_to, realm_port_to, self.users)
         return {'status':'OK', 'message': 'Realm Berhasil Dibuat'}
 
     def get_connected_realm(self):
