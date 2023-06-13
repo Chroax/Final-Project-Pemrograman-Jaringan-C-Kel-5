@@ -56,28 +56,34 @@ class ChatMessage(ft.Row):
         return colors_lookup[hash(user_name) % len(colors_lookup)]
 
 
-def ChatMessageView(page, cc):
+def ChatMessageView(page, cc, dest):
     def send_message_click(type):
         if type == "send":
             j = new_message.value.split(" ")
             command = j[0].strip()
             if command == "FILE":
-                realm_id = "anton"
-                receiver = "anton"
+                realm_id = dest
+                receiver = dest
                 filepath = j[1].strip()
                 protocol = "sendprivatefilerealm " + realm_id + " " + receiver + " " + filepath
                 print(cc.proses(protocol))
+                new_message.value=""
             else:
-                realm_id = "anton"
-                receiver = "anton"
+                realm_id = dest
+                receiver = dest
                 protocol = "sendprivaterealm " + realm_id + " " + receiver + new_message.value
                 print(cc.proses(protocol))
+                message = Message(cc.username, j[0], "chat_message")
+                m = ChatMessage(message)
+                chat.controls.append(m)
+                new_message.value=""
+                page.update()
 
         elif type == "refresh":
-            realm_id = "anton"
+            realm_id = dest
             protocol = "inboxrealm " + realm_id
             data = cc.proses(protocol)
-            message = Message("frederick", data, "chat_message")
+            message = Message(dest, data, "chat_message")
             m = ChatMessage(message)
             chat.controls.append(m)
             page.update()

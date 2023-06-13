@@ -10,7 +10,12 @@ class Router:
             "/sign-in": SignInView(page, cc),
             "/sign-up": SignUpView(page, cc),
             "/chat": ListChatView(page, cc),
-            "/msgchat": ChatMessageView(page, cc),
+            "/msgchat/afdal": ChatMessageView(page, cc,"afdal"),
+            "/msgchat/anton": ChatMessageView(page, cc,"anton"),
+            "/msgchat/cahyadi": ChatMessageView(page, cc,"cahyadi"),
+            "/msgchat/ariq": ChatMessageView(page, cc,"ariq"),
+            "/msgchat/marcel": ChatMessageView(page, cc,"marcel"),
+            "/msgchat/frederick": ChatMessageView(page, cc,"frederick"),
         }
         self.body = Container(content=self.routes['/sign-in'])
 

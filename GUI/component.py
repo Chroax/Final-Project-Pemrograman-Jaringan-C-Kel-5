@@ -255,18 +255,20 @@ class UserData(UserControl):
             on_click=lambda e: self.OpenMessage(e),
             content=Row(
                 controls=[
-                    Container(
-                        width=42,
-                        height=42,
-                        bgcolor="bluegrey900",
-                        alignment=alignment.center,
-                        border_radius=42,
-                        content=Text(
-                            value=self.initial_name,
-                            size=20,
-                            weight="bold",
-                            color="white"
-                        )
+                    Column(
+                        spacing=1,
+                        alignment="center",
+                        controls=[
+                            Text(
+                                value=self.initial_name,
+                                size=21,
+                                weight="bold",
+                                color="white",
+                                opacity=1,
+                                animate_opacity=200
+                            ),
+
+                        ]
                     ),
                     Column(
                         spacing=1,
