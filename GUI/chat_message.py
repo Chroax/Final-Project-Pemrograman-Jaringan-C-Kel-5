@@ -68,14 +68,18 @@ def ChatMessageView(page, cc):
                 protocol = "sendprivatefilerealm " + realm_id + " " + receiver + " " + filepath
                 print(protocol)
                 print(cc.proses(protocol))
+                message = Message(cc.username, new_message.value, "chat_message")
+                m = ChatMessage(message)
+                chat.controls.append(m)
                 new_message.value=""
+                page.update()
             else:
                 realm_id = cc.realm_id
                 receiver = cc.receiver
                 protocol = "sendprivaterealm " + realm_id + " " + receiver + " " + new_message.value
                 print(protocol)
                 print(cc.proses(protocol))
-                message = Message(cc.username, j[0], "chat_message")
+                message = Message(cc.username, new_message.value, "chat_message")
                 m = ChatMessage(message)
                 chat.controls.append(m)
                 new_message.value=""
