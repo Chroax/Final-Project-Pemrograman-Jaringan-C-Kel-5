@@ -5,9 +5,7 @@ class Realm():
         self.ip_address = ip_address
         self.port = port
 
-
 def ListChatView(page,cc):
-    realmid_list=[]
     def send_message_click(e, type):
         if(type == "refresh"):
             realm_columm.controls = [Divider(height=10, color="white24")]
@@ -20,21 +18,22 @@ def ListChatView(page,cc):
             realm_id = j[0]
             ip_address = j[1]
             port = j[2]
-            if realm_id == "" or ip_address == "" or port == "":
+            user = j[3]
+            if realm_id == "" or ip_address == "" or port == "" or user == "":
                 return
             protocol = "addrealm " + realm_id + " " + ip_address + " " + port
         
             print(cc.proses(protocol))
             realm_list = cc.proses("connectedrealm ")
             for realm_id in realm_list:
-                realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat", page, False, cc, realm_id, "anton"))
+                realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat", page, False, cc, realm_id, user))
                 realm_columm.controls.append(Divider(height=10, color="white24"))
             
         page.update()
         
 
     add_realm = TextField(
-        hint_text="Add realm ('realmId ipaddress port')",
+        hint_text="Add realm ('realm_id ipaddress port user')",
         autofocus=True,
         shift_enter=True,
         min_lines=1,
@@ -45,7 +44,6 @@ def ListChatView(page,cc):
         on_submit=lambda e: send_message_click(e, "add"),
         border_radius = 10,
     )
-    
 
     realm_columm = Column(
         controls=[
