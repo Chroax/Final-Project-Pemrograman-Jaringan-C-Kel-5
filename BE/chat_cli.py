@@ -10,6 +10,9 @@ class ChatClient:
         self.sock.connect(self.server_address)
         self.token_id = ""
         self.username = ""
+        self.realm_id = ""
+        self.receiver = ""
+
     def proses(self, cmdline):
         j = cmdline.split(" ")
         try:
