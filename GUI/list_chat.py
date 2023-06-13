@@ -7,7 +7,6 @@ class Realm():
 
 
 def ListChatView(page,cc):
-    realm_list=[]
     def send_message_click(e, type):
         j = add_realm.value.split(" ")
         realm_id = j[0]
@@ -16,10 +15,10 @@ def ListChatView(page,cc):
         if realm_id == "" or ip_address == "" or port == "":
             return
         protocol = "addrealm " + realm_id + " " + ip_address + " " + port
-        temp_realm = Realm(realm_id, ip_address, port)
-        realm_list.append(temp_realm)
-        realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat", page, False))
-        realm_columm.controls.append(Divider(height=10, color="white24"))
+        # temp_realm = Realm(realm_id, ip_address, port)
+        # realm_list.append(temp_realm)
+        # realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat", page, False))
+        # realm_columm.controls.append(Divider(height=10, color="white24"))
         print(cc.proses(protocol))
         page.update()
         
@@ -36,24 +35,29 @@ def ListChatView(page,cc):
         on_submit=lambda e: send_message_click(e, "add"),
         border_radius = 10,
     )
+    realm_list = cc.proses("connectedrealm ")
 
     realm_columm = Column(
         controls=[
             Divider(height=10, color="white24"), 
-            UserData("afdal", "afdal", "/msgchat/afdal", page, False),
-            Divider(height=10, color="white24"),
-            UserData("anton", "anton", "/msgchat/anton", page, False),
-            Divider(height=10, color="white24"),
-            UserData("frederick", "frederick", "/msgchat/frederick", page, False),
-            Divider(height=10, color="white24"),
-            UserData("ariq", "ariq", "/msgchat/ariq", page, False),
-            Divider(height=10, color="white24"),
-            UserData("marcel", "marcel", "/msgchat/marcel", page, False),
-            Divider(height=10, color="white24"),
-            UserData("cahyadi", "cahyadi", "/msgchat/cahyadi", page, False),
-            Divider(height=10, color="white24"),
-            ] + realm_list
+            # UserData("afdal", "afdal", "/msgchat/afdal", page, False),
+            # Divider(height=10, color="white24"),
+            # UserData("anton", "anton", "/msgchat/anton", page, False),
+            # Divider(height=10, color="white24"),
+            # UserData("frederick", "frederick", "/msgchat/frederick", page, False),
+            # Divider(height=10, color="white24"),
+            # UserData("ariq", "ariq", "/msgchat/ariq", page, False),
+            # Divider(height=10, color="white24"),
+            # UserData("marcel", "marcel", "/msgchat/marcel", page, False),
+            # Divider(height=10, color="white24"),
+            # UserData("cahyadi", "cahyadi", "/msgchat/cahyadi", page, False),
+            # Divider(height=10, color="white24"),
+            ] 
     )
+    for realm_id in realm_list:
+        print(realm_id)
+        # realm_columm.controls.append(Divider(height=10, color="white24"))
+        # realm_columm.controls.append(UserData(realm_id, realm_id, "/msgchat/"+realm_id, page, False))
 
     return Container(
         height=2000,
