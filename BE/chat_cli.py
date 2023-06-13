@@ -266,6 +266,7 @@ class ChatClient:
         string = "connectedrealm \r\n"
         result = self.sendstring(string)
         if result['status'] == 'OK':
+            print(result['messages'])
             return result['messages']
         else:
             return {}

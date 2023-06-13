@@ -11,7 +11,7 @@ def ListChatView(page,cc):
             realm_columm.controls = [Divider(height=10, color="white24")]
             realm_list = cc.proses("connectedrealm ")
             for realm_id in realm_list:
-                realm_columm.controls.append(UserData(realm_id, realm_list[realm_id][0], "/msgchat", page, False, cc, realm_id, realm_list[realm_id][2]))
+                realm_columm.controls.append(UserData(realm_id, realm_list[realm_id][0], "/msgchat", page, False, cc, realm_id, "anton"))
                 realm_columm.controls.append(Divider(height=10, color="white24"))
         else:
             j = add_realm.value.split(" ")
