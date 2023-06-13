@@ -9,23 +9,30 @@ class Realm():
 def ListChatView(page,cc):
     realmid_list=[]
     def send_message_click(e, type):
-        j = add_realm.value.split(" ")
-        realm_id = j[0]
-        ip_address = j[1]
-        port = j[2]
-        if realm_id == "" or ip_address == "" or port == "":
-            return
-        protocol = "addrealm " + realm_id + " " + ip_address + " " + port
-        # temp_realm = Realm(realm_id, ip_address, port)
-        # realm_list.append(temp_realm)
-       
-        print(cc.proses(protocol))
-        realm_list = cc.proses("connectedrealm ")
-        for realm_id in realm_list:
-             realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat/"+realm_id, page, False))
-             realm_columm.controls.append(Divider(height=10, color="white24"))
+        if(type == "refresh"):
+            realm_list = cc.proses("connectedrealm ")
+            for realm_id in realm_list:
+                realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat/"+realm_id, page, False))
+                realm_columm.controls.append(Divider(height=10, color="white24"))
+        else:
+            page.update()
+            j = add_realm.value.split(" ")
+            realm_id = j[0]
+            ip_address = j[1]
+            port = j[2]
+            if realm_id == "" or ip_address == "" or port == "":
+                return
+            protocol = "addrealm " + realm_id + " " + ip_address + " " + port
+            # temp_realm = Realm(realm_id, ip_address, port)
+            # realm_list.append(temp_realm)
         
-        page.update()
+            print(cc.proses(protocol))
+            realm_list = cc.proses("connectedrealm ")
+            for realm_id in realm_list:
+                realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat/"+realm_id, page, False))
+                realm_columm.controls.append(Divider(height=10, color="white24"))
+            
+            page.update()
         
 
     add_realm = TextField(
@@ -98,6 +105,12 @@ def ListChatView(page,cc):
                                         tooltip="Add",
                                         on_click=lambda e: send_message_click(e, "add"),
                                         icon_color = "white"
+                                    ),
+                                    IconButton(
+                                        icon=icons.REFRESH_ROUNDED,
+                                        tooltip="Refresh",
+                                        on_click=lambda e : send_message_click("refresh"),
+                                        icon_color = "white",
                                     ),
                                 ]
                             )
