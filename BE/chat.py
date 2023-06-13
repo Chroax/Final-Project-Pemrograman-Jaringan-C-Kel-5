@@ -14,7 +14,9 @@ class RealmBridge(threading.Thread):
         self.chats = {}
         self.realm_address_to = realm_address_to
         self.realm_port_to = realm_port_to
-        self.users = users
+        self.users = []
+        for username in users:
+            self.users.append(username)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((self.realm_address_to, self.realm_port_to))
         threading.Thread.__init__(self)
