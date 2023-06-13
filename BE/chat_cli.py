@@ -65,7 +65,9 @@ class ChatClient:
                 realm_address_to = j[2].strip()
                 realm_port_to = j[3].strip()
                 return self.add_realm(realm_id, realm_address_to, realm_port_to)
-           
+            elif (command == 'connectedrealm'):
+                return self.get_connected_realm()
+                
             # PRIVATE
             elif (command == 'sendprivaterealm'):
                 realm_id = j[1].strip()
@@ -251,6 +253,17 @@ class ChatClient:
         result = self.sendstring(string)
         if result['status'] == 'OK':
             return "realm {} berhasil dibuat" . format(realm_id)
+        else:
+            return "Error, {}" . format(result['message'])
+        
+    def get_connected_realm(self):
+        if (self.token_id == ""):
+            return "Error, not authorized"
+        
+        string = "connectedrealm \r\n"
+        result = self.sendstring(string)
+        if result['status'] == 'OK':
+            return "{}" . format(json.dumps(result['messages']))
         else:
             return "Error, {}" . format(result['message'])
         
