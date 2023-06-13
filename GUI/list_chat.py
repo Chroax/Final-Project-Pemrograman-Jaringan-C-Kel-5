@@ -10,6 +10,7 @@ def ListChatView(page,cc):
     realmid_list=[]
     def send_message_click(e, type):
         if(type == "refresh"):
+            realm_columm.controls = [Divider(height=10, color="white24")]
             realm_list = cc.proses("connectedrealm ")
             for realm_id in realm_list:
                 realm_columm.controls.append(UserData(realm_id, realm_list[realm_id][0], "/msgchat/"+realm_id, page, False))
@@ -51,24 +52,8 @@ def ListChatView(page,cc):
     realm_columm = Column(
         controls=[
             Divider(height=10, color="white24"), 
-            # UserData("afdal", "afdal", "/msgchat/afdal", page, False),
-            # Divider(height=10, color="white24"),
-            # UserData("anton", "anton", "/msgchat/anton", page, False),
-            # Divider(height=10, color="white24"),
-            # UserData("frederick", "frederick", "/msgchat/frederick", page, False),
-            # Divider(height=10, color="white24"),
-            # UserData("ariq", "ariq", "/msgchat/ariq", page, False),
-            # Divider(height=10, color="white24"),
-            # UserData("marcel", "marcel", "/msgchat/marcel", page, False),
-            # Divider(height=10, color="white24"),
-            # UserData("cahyadi", "cahyadi", "/msgchat/cahyadi", page, False),
-            # Divider(height=10, color="white24"),
-            ] 
+        ] 
     )
-    # for realm_id in realm_list:
-    #     print(realm_id)
-    #     realm_columm.controls.append(Divider(height=10, color="white24"))
-    #     realm_columm.controls.append(UserData(realm_id, realm_id, "/msgchat/"+realm_id, page, False))
 
     return Container(
         height=2000,
@@ -108,7 +93,7 @@ def ListChatView(page,cc):
                                     IconButton(
                                         icon=icons.REFRESH_ROUNDED,
                                         tooltip="Refresh",
-                                        on_click=lambda e : send_message_click("refresh"),
+                                        on_click=lambda e : send_message_click(e, "refresh"),
                                         icon_color = "white",
                                     ),
                                 ]
