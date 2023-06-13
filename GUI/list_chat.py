@@ -7,6 +7,7 @@ class Realm():
 
 
 def ListChatView(page,cc):
+    realmid_list=[]
     def send_message_click(e, type):
         j = add_realm.value.split(" ")
         realm_id = j[0]
@@ -17,9 +18,13 @@ def ListChatView(page,cc):
         protocol = "addrealm " + realm_id + " " + ip_address + " " + port
         # temp_realm = Realm(realm_id, ip_address, port)
         # realm_list.append(temp_realm)
-        # realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat", page, False))
-        # realm_columm.controls.append(Divider(height=10, color="white24"))
+       
         print(cc.proses(protocol))
+        realm_list = cc.proses("connectedrealm ")
+        for realm_id in realm_list:
+             realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat/"+realm_id, page, False))
+             realm_columm.controls.append(Divider(height=10, color="white24"))
+        
         page.update()
         
 
@@ -35,7 +40,7 @@ def ListChatView(page,cc):
         on_submit=lambda e: send_message_click(e, "add"),
         border_radius = 10,
     )
-    realm_list = cc.proses("connectedrealm ")
+    
 
     realm_columm = Column(
         controls=[
@@ -54,10 +59,10 @@ def ListChatView(page,cc):
             # Divider(height=10, color="white24"),
             ] 
     )
-    for realm_id in realm_list:
-        print(realm_id)
-        # realm_columm.controls.append(Divider(height=10, color="white24"))
-        # realm_columm.controls.append(UserData(realm_id, realm_id, "/msgchat/"+realm_id, page, False))
+    # for realm_id in realm_list:
+    #     print(realm_id)
+    #     realm_columm.controls.append(Divider(height=10, color="white24"))
+    #     realm_columm.controls.append(UserData(realm_id, realm_id, "/msgchat/"+realm_id, page, False))
 
     return Container(
         height=2000,
