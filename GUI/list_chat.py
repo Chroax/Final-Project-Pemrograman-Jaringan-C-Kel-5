@@ -12,10 +12,9 @@ def ListChatView(page,cc):
         if(type == "refresh"):
             realm_list = cc.proses("connectedrealm ")
             for realm_id in realm_list:
-                realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat/"+realm_id, page, False))
+                realm_columm.controls.append(UserData(realm_id, realm_list[realm_id][0], "/msgchat/"+realm_id, page, False))
                 realm_columm.controls.append(Divider(height=10, color="white24"))
         else:
-            page.update()
             j = add_realm.value.split(" ")
             realm_id = j[0]
             ip_address = j[1]
@@ -32,7 +31,7 @@ def ListChatView(page,cc):
                 realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat/"+realm_id, page, False))
                 realm_columm.controls.append(Divider(height=10, color="white24"))
             
-            page.update()
+        page.update()
         
 
     add_realm = TextField(
