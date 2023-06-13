@@ -231,19 +231,20 @@ class InputField(UserControl):
         )
 
 class UserData(UserControl):
-    def __init__(self, name, initial_name, route, page, group_chat, cc, realm_id):
+    def __init__(self, name, initial_name, route, page, group_chat, cc, realm_id, receiver):
         self.group_chat = group_chat
         self.route = route
         self.initial_name = initial_name
         self.name = name
         self.page = page
         self.realm_id = realm_id
+        self.receiver = receiver
         self.cc = cc
         super().__init__()
 
     def OpenMessage(self, e):
         self.cc.realm_id = self.realm_id
-        print(self.cc.realm_id)
+        self.cc.receiver = self.receiver
         self.page.route = self.route
         self.page.update()
 

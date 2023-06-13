@@ -63,7 +63,7 @@ def ChatMessageView(page, cc):
             command = j[0].strip()
             if command == "FILE":
                 realm_id = cc.realm_id
-                receiver = "anton"
+                receiver = cc.receiver
                 filepath = j[1].strip()
                 protocol = "sendprivatefilerealm " + realm_id + " " + receiver + " " + filepath
                 print(protocol)
@@ -71,7 +71,7 @@ def ChatMessageView(page, cc):
                 new_message.value=""
             else:
                 realm_id = cc.realm_id
-                receiver = "anton"
+                receiver = cc.receiver
                 protocol = "sendprivaterealm " + realm_id + " " + receiver + " " + new_message.value
                 print(protocol)
                 print(cc.proses(protocol))
@@ -82,10 +82,10 @@ def ChatMessageView(page, cc):
                 page.update()
 
         elif type == "refresh":
-            realm_id = dest
+            realm_id = cc.realm_id
             protocol = "inboxrealm " + realm_id
             data = cc.proses(protocol)
-            message = Message(dest, data, "chat_message")
+            message = Message(realm_id, data, "chat_message")
             m = ChatMessage(message)
             chat.controls.append(m)
             page.update()

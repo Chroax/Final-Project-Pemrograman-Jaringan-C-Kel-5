@@ -13,7 +13,7 @@ def ListChatView(page,cc):
             realm_columm.controls = [Divider(height=10, color="white24")]
             realm_list = cc.proses("connectedrealm ")
             for realm_id in realm_list:
-                realm_columm.controls.append(UserData(realm_id, realm_list[realm_id][0], "/msgchat", page, False, cc, realm_id))
+                realm_columm.controls.append(UserData(realm_id, realm_list[realm_id][0], "/msgchat", page, False, cc, realm_id, "anton"))
                 realm_columm.controls.append(Divider(height=10, color="white24"))
         else:
             j = add_realm.value.split(" ")
@@ -23,13 +23,11 @@ def ListChatView(page,cc):
             if realm_id == "" or ip_address == "" or port == "":
                 return
             protocol = "addrealm " + realm_id + " " + ip_address + " " + port
-            # temp_realm = Realm(realm_id, ip_address, port)
-            # realm_list.append(temp_realm)
         
             print(cc.proses(protocol))
             realm_list = cc.proses("connectedrealm ")
             for realm_id in realm_list:
-                realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat", page, False, cc, realm_id))
+                realm_columm.controls.append(UserData(realm_id, ip_address, "/msgchat", page, False, cc, realm_id, "anton"))
                 realm_columm.controls.append(Divider(height=10, color="white24"))
             
         page.update()
