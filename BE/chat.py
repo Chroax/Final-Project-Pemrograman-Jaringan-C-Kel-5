@@ -113,7 +113,7 @@ class Chat:
                 filename = os.path.basename(j[3].strip())
                 encoded_file = j[4].strip()
                 sender = self.sessions[session_id]['username']
-                logging.warning("SEND: session {} send file {} from {} to group {}" . format(session_id, sender, receiver))
+                logging.warning("SEND: session {} send file {} from {} to group {}" . format(session_id, filename, sender, j[2].strip()))
                 return self.send_group_file(session_id, sender, group_receiver, filename, encoded_file)
             
             # INBOX
