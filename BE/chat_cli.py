@@ -263,9 +263,9 @@ class ChatClient:
         string = "connectedrealm \r\n"
         result = self.sendstring(string)
         if result['status'] == 'OK':
-            return "{}" . format(result['messages'])
+            return result['messages']
         else:
-            return "Error, {}" . format(result['message'])
+            return {}
         
     # PRIVATE
     def send_private_message_realm(self, realm_id, receiver, message):
