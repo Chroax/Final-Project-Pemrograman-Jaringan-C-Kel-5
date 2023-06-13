@@ -477,7 +477,7 @@ class Chat:
     def get_connected_realm(self):
         realms = {}
         for realm_id in self.realms:
-            realms[realm_id] = [self.realms[realm_id].realm_address_to, self.realms[realm_id].realm_port_to]
+            realms[realm_id] = [self.realms[realm_id].realm_address_to, self.realms[realm_id].realm_port_to, self.realms[realm_id].users]
             
         return { 'status': 'OK', 'messages': realms}
 
