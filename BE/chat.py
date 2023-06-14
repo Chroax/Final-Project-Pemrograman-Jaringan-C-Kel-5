@@ -300,19 +300,19 @@ class Chat:
         if (s_fr == False or s_to == False):
             return {'status': 'ERROR', 'message': 'User Tidak Terdaftar'}
 
-        message = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message}
+        msg = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message}
         outqueue_sender = s_fr['outgoing']
         inqueue_receiver = s_to['incoming']
         try:	
-            outqueue_sender[sender].put(message)
+            outqueue_sender[sender].put(msg)
         except KeyError:
             outqueue_sender[sender] = Queue()
-            outqueue_sender[sender].put(message)
+            outqueue_sender[sender].put(msg)
         try:
-            inqueue_receiver[sender].put(message)
+            inqueue_receiver[sender].put(msg)
         except KeyError:
             inqueue_receiver[sender] = Queue()
-            inqueue_receiver[sender].put(message)
+            inqueue_receiver[sender].put(msg)
             
         return {'status': 'OK', 'message': 'Pesan Berhasil Dikirim'}
     
@@ -374,19 +374,19 @@ class Chat:
             if s_to is False:
                 continue
             
-            message = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message}
+            msg = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message}
             outqueue_sender = s_fr['outgoing']
             inqueue_receiver = s_to['incoming']
             try:    
-                outqueue_sender[sender].put(message)
+                outqueue_sender[sender].put(msg)
             except KeyError:
                 outqueue_sender[sender] = Queue()
-                outqueue_sender[sender].put(message)
+                outqueue_sender[sender].put(msg)
             try:
-                inqueue_receiver[sender].put(message)
+                inqueue_receiver[sender].put(msg)
             except KeyError:
                 inqueue_receiver[sender] = Queue()
-                inqueue_receiver[sender].put(message)
+                inqueue_receiver[sender].put(msg)
                 
         return {'status': 'OK', 'message': 'Pesan Grup Berhasil Dikirim'}
     
@@ -495,8 +495,8 @@ class Chat:
         if (s_fr == False or s_to == False):
             return {'status': 'ERROR', 'message': 'User Tidak Terdaftar'}
         
-        message = { 'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
-        self.realms[realm_id].put(message)
+        msg = { 'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
+        self.realms[realm_id].put(msg)
         
         j = data.split()
         j[0] = "recvsendprivaterealm"
@@ -515,8 +515,8 @@ class Chat:
         if (s_fr == False or s_to == False):
             return {'status': 'ERROR', 'message': 'User Tidak Terdaftar terima'}
         
-        message = { 'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
-        self.realms[realm_id].put(message)
+        msg = { 'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
+        self.realms[realm_id].put(msg)
         
         return {'status': 'OK', 'message': 'Pesan Berhasil Dikirim ke Realm'}
     
@@ -609,8 +609,8 @@ class Chat:
             if s_to is False:
                 continue
             
-            message = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
-            self.realms[realm_id].put(message)
+            msg = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
+            self.realms[realm_id].put(msg)
         
         j = data.split()
         j[0] = "recvsendgrouprealm"
@@ -632,8 +632,8 @@ class Chat:
             if s_to is False:
                 continue
             
-            message = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
-            self.realms[realm_id].put(message)
+            msg = {'msg_from': s_fr['name'], 'msg_to': s_to['name'], 'msg': message }
+            self.realms[realm_id].put(msg)
             
         return {'status': 'OK', 'message': 'Pesan Grup Berhasil Dikirim ke Realm'}
     
@@ -754,14 +754,14 @@ if __name__=="__main__":
     sesi = j.proses("auth messi surabaya")
     print(sesi)
     sesi2 = j.proses("auth henderson surabaya")
-    tokenid = sesi['tokenid']
-    # tokenid2 = sesi2['tokenid']
-    print(j.proses("send {} henderson hello gimana kabarnya son " . format(tokenid)))
-    # print(j.proses("send {} messi hello gimana kabarnya mess " . format(tokenid)))
+    token_id = sesi['token_id']
+    # token_id2 = sesi2['token_id']
+    print(j.proses("send {} henderson hello gimana kabarnya son " . format(token_id)))
+    # print(j.proses("send {} messi hello gimana kabarnya mess " . format(token_id)))
 
-    #print j.send_message(tokenid,'messi','henderson','hello son')
-    #print j.send_message(tokenid,'henderson','messi','hello si')
-    #print j.send_message(tokenid,'lineker','messi','hello si dari lineker')
+    #print j.send_message(token_id,'messi','henderson','hello son')
+    #print j.send_message(token_id,'henderson','messi','hello si')
+    #print j.send_message(token_id,'lineker','messi','hello si dari lineker')
 
 
     # print("isi mailbox dari messi")
