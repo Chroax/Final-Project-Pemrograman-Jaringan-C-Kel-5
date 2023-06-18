@@ -72,9 +72,9 @@
 
 `addrealm [realm_id] [realm_address_to] [realm_port_to]`
 
-- Tujuan: menambahkan realm baru sebagai jembatan antara 2 server
+- Tujuan: menambahkan jembatan realm baru sebagai penghubung antara 2 server
 - Parameter:
-  - realm_id: nama realm yang menjadi identitas
+  - realm_id: nama jembatan realm yang menjadi identitas
   - realm_address_to: ip address dari server yang ingin disambungkan
   - realm_port_to: port dari server yang ingin disambungkan
 
@@ -82,7 +82,7 @@
 
 `connectedrealm`
 
-- Tujuan: menampilkan semua realm yang terhubung pada suatu server
+- Tujuan: menampilkan semua jembatan realm yang terhubung pada suatu server
 - Parameter: -
 
 ### Send Private Realm
@@ -91,7 +91,7 @@
 
 - Tujuan: mengirimkan pesan secara privat ke pengguna pada server lain yang telah tersambung
 - Parameter:
-  - realm_id: nama realm yang menjadi identitas
+  - realm_id: nama jembatan realm yang menjadi identitas
   - receiver: penerima pesan yang dikirim
   - message: pesan yang akan dikirimkan
 
@@ -101,7 +101,7 @@
 
 - Tujuan: mengirimkan file secara privat ke pengguna pada server lain yang telah tersambung
 - Parameter:
-  - realm_id: nama realm yang menjadi identitas
+  - realm_id: nama jembatan realm yang menjadi identitas
   - receiver: penerima file yang dikirim
   - filepath: lokasi file yang mau dikirimkan
 
@@ -111,7 +111,7 @@
 
 - Tujuan: mengirimkan pesan ke beberapa orang pada server lain yang telah tersambung
 - Parameter:
-  - realm_id: nama realm yang menjadi identitas
+  - realm_id: nama jembatan realm yang menjadi identitas
   - group_receiver: penerima pesan yang dikirim
   - message: pesan yang akan dikirimkan
 
@@ -121,7 +121,7 @@
 
 - Tujuan: mengirimkan file ke beberapa orang pada server lain yang telah tersambung
 - Parameter:
-  - realm_id: nama realm yang menjadi identitas
+  - realm_id: nama jembatan realm yang menjadi identitas
   - group_receiver: penerima file yang dikirim
   - filepath: lokasi file yang ingin dikirimkan
 
@@ -129,9 +129,9 @@
 
 `inboxrealm [realm_id]`
 
-- Tujuan: menampilkan pesan yang belum dibaca pada server yang terhubung pada realm yang sama
+- Tujuan: menampilkan pesan yang belum dibaca pada server yang terhubung pada jembatan realm yang sama
 - Parameter:
-  - realm_id: nama realm yang menjadi identitas
+  - realm_id: nama jembatan realm yang menjadi identitas
 
 ### Login Info
 
